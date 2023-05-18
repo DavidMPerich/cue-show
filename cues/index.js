@@ -15,12 +15,14 @@ app.get('/', (req, res) => {
 
 app.post('/cues/create', async (req, res) => {
     const id = randomBytes(4).toString('hex');
-    const { maker } = req.body;
+    const { maker } = req.body;     //Add More Specs To Cue
 
     cues[id] = {
         id,
         maker
     }
+
+    //Send Event To Event-Bus
 
     res.status(201).send(cues[id]);
 });
