@@ -1,10 +1,31 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const { randomBytes } = require('crypto');
+const cors = require('cors');
 
 const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+
+const cues = {};
 
 app.get('/', (req, res) => {
-    res.send('My App');
+    res.send(cues);
 });
+
+app.post('/cues/create', async (req, res) => {
+    const id = randomBytes(4).toString('hex');
+    const { maker } = req.body;
+
+    cues[id] = {
+        id,
+        maker
+    }
+
+    res.status(201).send(cues[id]);
+});
+
+
 
 const port = 3000;
 
