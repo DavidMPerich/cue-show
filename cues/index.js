@@ -12,11 +12,6 @@ app.use(cors());
 //PSUEDO DB
 const cues = {};
 
-//TODO: Delete Later
-app.get('/', (req, res) => {
-    res.send(cues);
-});
-
 //Create Cue
 app.post('/cues/create', async (req, res) => {
     const id = randomBytes(4).toString('hex');
@@ -32,6 +27,11 @@ app.post('/cues/create', async (req, res) => {
     res.status(201).send(cues[id]);
 });
 
+//Handle Incoming Events
+app.post('/events', (req, res) => {
+    console.log('Received Event:', req.body.type);
+    res.send({});
+});
 
 //Start Server
 const port = 4000;

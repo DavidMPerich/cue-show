@@ -21,7 +21,7 @@ app.get('/cues', (req, res) => {
 
 //Handle Incoming Events
 app.post('/events', (req, res) => {
-
+    console.log('Received Event:', req.body.type);
     res.send({});
 });
 
