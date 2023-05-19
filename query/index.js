@@ -1,13 +1,31 @@
+//Imports
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
+app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.send('Query Service');
+//PSUEDO DB
+const cues = {};
+
+//TODO: Write Handle Event
+const handleEvent = () => {
+
+};
+
+//Index Page
+app.get('/cues', (req, res) => {
+    res.send(cues);
 });
 
-const port = 4002;
+//Handle Incoming Events
+app.post('/events', (req, res) => {
 
+    res.send({});
+});
+
+//Start Server
+const port = 4002;
 app.listen(port, () => {
     console.log('Listening on port', port);
-})
+});
