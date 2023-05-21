@@ -14,7 +14,15 @@ const cues = {};
 
 //TODO: Write Handle Event
 const handleEvent = () => {
-
+    if (type === 'CueCreated') {
+        const { id, maker } = data;
+        cues[id] = { id, maker, offers: [] };
+    }
+    if (type === 'OfferCreated') {
+        const { id, content, cueId } = data;
+        const cue = cues[cueId];
+        cue.offers.push({ id, content });
+    }
 };
 
 //Index Page
@@ -24,7 +32,8 @@ app.get('/cues', (req, res) => {
 
 //Handle Incoming Events
 app.post('/events', (req, res) => {
-    console.log('Received Event:', req.body.type);
+    const { type, data } = req.body;
+    handleEvent(type, data);
     res.send({});
 });
 
