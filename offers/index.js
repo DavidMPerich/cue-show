@@ -27,7 +27,16 @@ app.post('/cues/:id/offers', async (req, res) => {
     offers.push({id: offerId, content});
     offersByCueId[req.params.id] = offers;
 
-    //TODO: Send Event To Event-Bus
+    await axios.post('http://localhost:4005/events', {
+        type: 'OfferCreated',
+        data: {
+            id: offerId,
+            content,
+            cueId: req.params.id
+        }
+    });
+
+    res.status(201).send(offers);
 });
 
 //Handle Incoming Events
