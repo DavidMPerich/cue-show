@@ -23,7 +23,13 @@ app.post('/cues/create', async (req, res) => {
         maker
     }
 
-    //TODO: Send Event To Event-Bus
+    await axios.post('http://localhost:4005/events', {
+        type: 'CueCreated',
+        data: {
+            id,
+            maker
+        }
+    });
 
     res.status(201).send(cues[id]);
 });
