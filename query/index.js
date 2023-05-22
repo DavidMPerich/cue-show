@@ -13,7 +13,7 @@ app.use(cors());
 const cues = {};
 
 //TODO: Write Handle Event
-const handleEvent = () => {
+const handleEvent = (type, data) => {
     if (type === 'CueCreated') {
         const { id, maker } = data;
         cues[id] = { id, maker, offers: [] };
