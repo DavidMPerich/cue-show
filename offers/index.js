@@ -13,11 +13,6 @@ app.use(cors());
 //Psuedo DB
 const offersByCueId = {};
 
-//Index Page??
-app.get('/cues/:id/offers', (req, res) => {
-    res.send(offersByCueId[req.params.id] || []);
-});
-
 //Create Offer
 app.post('/cues/:id/offers', async (req, res) => {
     const offerId = randomBytes(4).toString('hex');

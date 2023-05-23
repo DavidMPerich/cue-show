@@ -25,7 +25,7 @@ const handleEvent = (type, data) => {
     }
 };
 
-//Index Page
+//Get Route
 app.get('/cues', (req, res) => {
     res.send(cues);
 });
@@ -39,6 +39,17 @@ app.post('/events', (req, res) => {
 
 //Start Server
 const port = 4002;
-app.listen(port, () => {
+app.listen(port, async () => {
     console.log('Listening on port', port);
+    try {
+        const res = await axios.get("http://localhost:4005/events");
+     
+        for (let event of res.data) {
+          console.log("Processing event:", event.type);
+     
+          handleEvent(event.type, event.data);
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
 });
