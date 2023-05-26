@@ -7,7 +7,7 @@ const OfferCreate = ({ cueId }) => {
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        await axios.post(`http://localhost:4001/${cueId}/comments`, {
+        await axios.post(`http://localhost:4001/cues/${cueId}/offers`, {
             content
         });
 
