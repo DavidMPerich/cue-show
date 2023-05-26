@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import OfferCreate from './OfferCreate';
 
 const CueList = () => {
     const [cues, setCues] = useState({});
@@ -22,6 +23,7 @@ const CueList = () => {
             >
                 <div className='card-body'>
                     <h3>{cue.maker}</h3>
+                    <OfferCreate cueId={cue.id} />
                 </div>
             </div>
         );
