@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cues-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cues
+  template:
+    metadata:
+      labels:
+        app: cues
+    spec:
+      containers:
+        - name: cues
+          image: dperich2023/cues:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cues-clusterip-srv
+spec:
+  selector:
+    app: cues
+  ports:
+    - name: cues
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
