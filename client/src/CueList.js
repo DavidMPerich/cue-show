@@ -7,7 +7,7 @@ const CueList = () => {
     const [cues, setCues] = useState({});
 
     const fetchCues = async () => {
-        const res = await axios.get('http://localhost:4002/cues');
+        const res = await axios.get('http://cues.com/cues');
         setCues(res.data);
     };
 

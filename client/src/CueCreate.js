@@ -7,7 +7,7 @@ const CueCreate = () => {
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        await axios.post('http://localhost:4000/cues/create', {
+        await axios.post('http://cues.com/cues/create', {
             maker
         });
 
