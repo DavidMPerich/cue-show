@@ -22,7 +22,7 @@ app.post('/cues/:id/offers', async (req, res) => {
     offers.push({id: offerId, content});
     offersByCueId[req.params.id] = offers;
 
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-srv:4005/events', {
         type: 'OfferCreated',
         data: {
             id: offerId,

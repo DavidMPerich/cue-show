@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: offers-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: offers
+  template:
+    metadata:
+      labels:
+        app: offers
+    spec:
+      containers:
+        - name: offers
+          image: dperich2023/offers:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: offers-srv
+spec:
+  selector:
+    app: offers
+  ports:
+    - name: offers
+      protocol: TCP
+      port: 4001
+      targetPort: 4001
